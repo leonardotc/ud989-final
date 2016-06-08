@@ -2,6 +2,8 @@
 
   if (ko) {
     ko.bindingHandlers.GoogleMaps = {
+      map: null,
+      
       init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
 
         //initialize all variables
@@ -27,15 +29,11 @@
           console.log(valueUnwrapped);
         });
 
-        bindingContext.map = map;
+        self.map = map;
       },
 
-      update: function(element, valueAccessor, allBindings, bindingContext) {
-      
-        var map = bindingContext.map;
-        
-        
-        
+      update: function(element, valueAccessor, allBindings, bindingContext) {        
+        self.map.setOptions(ko.unwrap(valueAccessor()));
       }
     }
 

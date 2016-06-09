@@ -18,7 +18,6 @@
           valueUnwrapped.center.lat = center.lat();
           valueUnwrapped.center.lng = center.lng();
           value(valueUnwrapped);
-          console.log(valueUnwrapped);
         });
 
         google.maps.event.addListener(map, 'zoom_changed', function() {
@@ -26,10 +25,15 @@
 
           valueUnwrapped.zoom = zoom;
           value(valueUnwrapped);
-          console.log(valueUnwrapped);
         });
 
+        var markers = viewModel.markers();
+        for( var i = 0; i < markers.length; i++) {
+          new google.maps.Marker({position: markers[i].location(), map: map});
+        }
+        
         self.map = map;
+
       },
 
       update: function(element, valueAccessor, allBindings, bindingContext) {        

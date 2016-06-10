@@ -32,6 +32,11 @@
           new google.maps.Marker({position: markers[i].location(), map: map});
         }
         
+        viewModel.markers.subscribe(function(newElement) {
+          //inefficient as it comes
+          console.log("changed!!" + newElement);
+        });
+        
         self.map = map;
 
       },

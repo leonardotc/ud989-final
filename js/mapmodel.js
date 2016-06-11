@@ -11,11 +11,6 @@ var app = app || {};
       zoom: 10
     });
     
-    self.markers = ko.observableArray([]);
-    
-    self.addMarker = function(marker) {
-      self.markers().push(marker);
-    }
   }
 
 })();

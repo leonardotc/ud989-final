@@ -2,7 +2,6 @@
 
   if (ko) {
     ko.bindingHandlers.GoogleMaps = {
-      map: null,
       
       init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
 
@@ -26,23 +25,13 @@
           valueUnwrapped.zoom = zoom;
           value(valueUnwrapped);
         });
-
-        var markers = viewModel.markers();
-        for( var i = 0; i < markers.length; i++) {
-          new google.maps.Marker({position: markers[i].location(), map: map});
-        }
         
-        viewModel.markers.subscribe(function(newElement) {
-          //inefficient as it comes
-          console.log("changed!!" + newElement);
-        });
-        
-        self.map = map;
+        bindingContext.map = map;
 
       },
 
-      update: function(element, valueAccessor, allBindings, bindingContext) {        
-        self.map.setOptions(ko.unwrap(valueAccessor()));
+      update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {        
+        bindingContext.map.setOptions(ko.unwrap(valueAccessor()));
       }
     }
 

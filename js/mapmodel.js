@@ -2,15 +2,17 @@ var app = app || {};
 
 (function() {
 
-  app.MapModel = function() {
+  app.MapModel = function(lat, lng, zoom = 16, markerList = []) {
     var self = this;
     
     self.mapData = ko.observable({
-      center: {lat: -34.397, lng: 150.644},
+      center: {lat: lat, lng: lng},
       scrollwheel: false,
-      zoom: 10
+      zoom: zoom
     });
     
+    self.markers = ko.observableArray(markerList);
+
   }
 
 })();

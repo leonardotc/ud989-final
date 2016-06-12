@@ -28,11 +28,25 @@
         
         bindingContext.map = map;
 
+        viewModel.markers.subscribe(function(changes) {
+          bindingContext.markers = bindingContext.markers || [];
+          bindingContext.markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+
+          for( var i = 0; i < changes.length; i++) {
+            console.log(changes[i]);
+            bindingContext.markers.push(new google.maps.Marker({position: changes[i].location(), map: map}));
+          }
+          
+        }, null, "arrayChange");
+
       },
 
       update: function(element, valueAccessor, allBindings, viewModel, bindingContext) {        
         bindingContext.map.setOptions(ko.unwrap(valueAccessor()));
       }
+      
     }
 
   }

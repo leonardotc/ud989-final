@@ -8,7 +8,7 @@ var app = app || {};
     self.name = name;
     self.options = options;
     self.location = ko.observable({lat: lat, lng: lng});
-    
+
   }
 
 })();
